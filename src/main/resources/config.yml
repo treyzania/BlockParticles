@@ -1,0 +1,6 @@
+# Configuration file for BlockParticles by treyzania
+# github.com/treyzania/blockparticles
+
+default_activation_radius: 10
+max_group_size: 10
+
