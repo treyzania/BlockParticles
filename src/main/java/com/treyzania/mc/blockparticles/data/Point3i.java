@@ -12,6 +12,14 @@ public final class Point3i {
 		
 	}
 	
+	public Point3i() {
+		
+		this.x = 0;
+		this.y = 0;
+		this.z = 0;
+		
+	}
+	
 	public Point3i add(Point3i o) {
 		return new Point3i(this.x + o.x, this.y + o.y, this.z + o.z);
 	}

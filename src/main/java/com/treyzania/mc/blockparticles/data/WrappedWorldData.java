@@ -1,9 +1,16 @@
 package com.treyzania.mc.blockparticles.data;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
+import org.bukkit.Bukkit;
 import org.bukkit.World;
+
+import com.google.gson.Gson;
+import com.treyzania.mc.blockparticles.json.IoUtils;
 
 public class WrappedWorldData implements WorldData {
 	
@@ -43,7 +50,18 @@ public class WrappedWorldData implements WorldData {
 	@Override
 	public void flush() {
 		
-		// TODO
+		Gson g = IoUtils.makeGson();
+		
+		try {
+			
+			FileWriter fw = new FileWriter(IoUtils.getFileForWorld(this.world));
+			
+			fw.write(g.toJson(this.groups));
+			fw.close();
+			
+		} catch (IOException e) {
+			Bukkit.getLogger().log(Level.SEVERE, "Could not flush data properly!", e);
+		}
 		
 	}
 	
