@@ -13,6 +13,8 @@ public class ParticleGroup {
 	
 	private List<Point3i> points = new ArrayList<>();;
 	
+	private transient Runnable flushCallback;
+	
 	public void setType(Particle p) {
 		this.type = p;
 	}
@@ -68,6 +70,14 @@ public class ParticleGroup {
 	
 	public int getNumPoints() {
 		return this.points.size();
+	}
+	
+	public void setFlushCallback(Runnable cb) {
+		this.flushCallback = cb;
+	}
+	
+	public void flush() {
+		this.flushCallback.run();
 	}
 	
 }
