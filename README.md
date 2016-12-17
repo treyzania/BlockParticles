@@ -33,5 +33,5 @@ Groups don't have to be contiguous.
 * `/bpstop` : Stops placing particle blocks and ends your placement session.
 * `/bpsettype <name> <type>` : Changes the type of particle for the group.
 * `/bpsetdensity <name> <density>` : Changes the density of the group.
-* `/bpsetrange` <name> <range>` : Changes the visibility range of the group.
+* `/bpsetrange <name> <range>` : Changes the visibility range of the group.
 
