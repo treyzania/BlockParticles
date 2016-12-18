@@ -63,10 +63,19 @@ public class DataManager {
 		
 	}
 	
-	public PlacementSession startSession(World w, Player p) {
+	public PlacementSession startSession(World w, Player p, String gName) {
 		
-		PlacementSession ps = new PlacementSession(this.getWorldData(w.getName()), new ParticleGroup());
+		WorldData wd = this.getWorldData(w);
 		
+		ParticleGroup pg = wd.getGroup(gName);
+		if (pg == null) {
+			
+			pg = new ParticleGroup();
+			wd.addGroup(gName, pg);
+			
+		}
+		
+		PlacementSession ps = new PlacementSession(wd, pg);
 		this.sessions.put(p, ps);
 		return ps;
 		
@@ -74,6 +83,10 @@ public class DataManager {
 	
 	public void endSession(Player p) {
 		this.sessions.remove(p);
+	}
+	
+	public PlacementSession getSession(Player p) {
+		return this.sessions.get(p);
 	}
 	
 }

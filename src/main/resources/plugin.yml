@@ -2,4 +2,28 @@ name: BlockParticles
 author: treyzania
 version: 0.0.1
 main: com.treyzania.mc.blockparticles
-
+commands:
+	bpcreate:
+		description: Starts creation of a set of block particles.
+		aliases: [bpc bpstart]
+		usage: '/<command> <name> <type>'
+	bpstop:
+		description: Stops session.
+		aliases: [bps]
+		usage: '/<command>'
+	bpsettype:
+		description: Changes the type of particle for the group.
+		aliases: [bpst]
+		usage: '/<command> <name> <type>'
+	bpsetdensity:
+		description: Changes the density of the group.
+		aliases: [bpsd]
+		usage: '/<command> <name> <density>'
+	bpsetrange:
+		description: Changes the visibility range of the group.
+		aliases: [bpsr]
+		usage: '/<command> <name> <range>'
+	bpreload:
+		description: Reloads some stuff, hopefully.
+		aliases: [bpr]
+		usage: '/<command>'

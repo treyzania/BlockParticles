@@ -1,8 +1,6 @@
 package com.treyzania.mc.blockparticles.data;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.bukkit.Particle;
@@ -14,7 +12,7 @@ public class ParticleGroup {
 	private float range = 0;
 	private int density = 1;
 	
-	private List<Point3i> points = new ArrayList<>();;
+	private Set<Point3i> points = new HashSet<>();;
 	
 	private transient Runnable flushCallback;
 	public transient Set<Player> nearbyPlayers = new HashSet<>();
@@ -47,8 +45,8 @@ public class ParticleGroup {
 		this.points.add(p);
 	}
 	
-	public List<Point3i> getPoints() {
-		return new ArrayList<>(this.points);
+	public Set<Point3i> getPoints() {
+		return new HashSet<>(this.points);
 	}
 	
 	public Point3i getCenter() {

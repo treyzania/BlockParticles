@@ -3,11 +3,15 @@ package com.treyzania.mc.blockparticles;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.treyzania.mc.blockparticles.cmd.ComandStartSession;
+import com.treyzania.mc.blockparticles.cmd.CommandEndSession;
+import com.treyzania.mc.blockparticles.cmd.CommandReload;
+
 public class BlockParticles extends JavaPlugin {
 	
 	private ConfigSource config;
 	
-	private DataManager manager;
+	private DataManager dataManager;
 	
 	@Override
 	public void onLoad() {
@@ -21,12 +25,18 @@ public class BlockParticles extends JavaPlugin {
 	public void onEnable() {
 		
 		// Utils.
-		this.manager = new DataManager();
+		this.dataManager = new DataManager();
 		
 		// Listeners.
 		PluginManager pm = this.getServer().getPluginManager();
-		pm.registerEvents(new WorldLoadStateListener(this.manager), this);
-		pm.registerEvents(new GroupActivationListener(this.manager, this.config.getUpdateDistance()), this);
+		pm.registerEvents(new WorldLoadStateListener(this.dataManager), this);
+		pm.registerEvents(new GroupActivationListener(this.dataManager, this.config.getUpdateDistance()), this);
+		pm.registerEvents(new BlockPlacementListener(this.dataManager), this);
+		
+		// Commands.
+		this.getCommand("bpcreate").setExecutor(new ComandStartSession(this.dataManager));
+		this.getCommand("bpstop").setExecutor(new CommandEndSession(this.dataManager));
+		this.getCommand("bpreload").setExecutor(new CommandReload(this));
 		
 	}
 	
