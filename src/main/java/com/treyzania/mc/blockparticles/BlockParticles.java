@@ -26,6 +26,7 @@ public class BlockParticles extends JavaPlugin {
 		// Listeners.
 		PluginManager pm = this.getServer().getPluginManager();
 		pm.registerEvents(new WorldLoadStateListener(this.manager), this);
+		pm.registerEvents(new GroupActivationListener(this.manager, this.config.getUpdateDistance()), this);
 		
 	}
 	

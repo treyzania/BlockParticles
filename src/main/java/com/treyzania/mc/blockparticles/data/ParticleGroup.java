@@ -1,19 +1,23 @@
 package com.treyzania.mc.blockparticles.data;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.bukkit.Particle;
+import org.bukkit.entity.Player;
 
 public class ParticleGroup {
 	
 	private Particle type;
-	private int range = 0;
+	private float range = 0;
 	private int density = 1;
 	
 	private List<Point3i> points = new ArrayList<>();;
 	
 	private transient Runnable flushCallback;
+	public transient Set<Player> nearbyPlayers = new HashSet<>();
 	
 	public void setType(Particle p) {
 		this.type = p;
@@ -23,11 +27,11 @@ public class ParticleGroup {
 		return this.type;
 	}
 	
-	public void setRange(int r) {
+	public void setRange(float r) {
 		this.range = r;
 	}
 	
-	public int getRange() {
+	public float getRange() {
 		return this.range;
 	}
 	
@@ -78,6 +82,10 @@ public class ParticleGroup {
 	
 	public void flush() {
 		this.flushCallback.run();
+	}
+	
+	public boolean isActive() {
+		return this.nearbyPlayers.size() > 0;
 	}
 	
 }

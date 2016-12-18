@@ -23,4 +23,11 @@ public interface ConfigSource {
 		return this.getMaxGroupSize() < 0;
 	}
 	
+	/**
+	 * Gets the distance that players have to move before doing updates.
+	 * 
+	 * @return The update distance.
+	 */
+	float getUpdateDistance();
+	
 }
