@@ -3,4 +3,5 @@
 
 default_activation_radius: 10
 max_group_size: 10
+update_distance: 0.05
 
