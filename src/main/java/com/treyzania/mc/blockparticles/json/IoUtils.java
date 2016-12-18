@@ -2,6 +2,7 @@ package com.treyzania.mc.blockparticles.json;
 
 import java.io.File;
 
+import org.bukkit.Particle;
 import org.bukkit.World;
 
 import com.google.gson.Gson;
@@ -18,7 +19,11 @@ public class IoUtils {
 		
 		// Config.
 		gb.setPrettyPrinting();
+		gb.serializeNulls();
+		
+		// Adapters
 		gb.registerTypeAdapter(Point3i.class, new Point3iAdapter());
+		gb.registerTypeAdapter(Particle.class, new EnumAdapter<Particle>(Particle.class));
 		
 		return gb.create();
 		

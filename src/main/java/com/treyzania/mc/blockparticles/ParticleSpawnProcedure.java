@@ -34,6 +34,7 @@ public class ParticleSpawnProcedure implements Runnable {
 			
 			WorldData wd = this.manager.getWorldData(w);
 			if (wd == null) continue;
+			if (wd.getGroups() == null) continue;
 			
 			for (ParticleGroup pg : wd.getGroups().values()) {
 				
@@ -43,13 +44,7 @@ public class ParticleSpawnProcedure implements Runnable {
 				int density = pg.getDensity();
 				
 				for (Point3i block : pg.getPoints()) {
-					
-					double x = block.x + r.nextDouble();
-					double y = block.y + r.nextDouble();
-					double z = block.z + r.nextDouble();
-					
-					w.spawnParticle(type, x, y, z, density);
-					
+					w.spawnParticle(type, block.x, block.y, block.z, density, r.nextDouble(), r.nextDouble(), r.nextDouble(), 0D, null);
 				}
 				
 			}

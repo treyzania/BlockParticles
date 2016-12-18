@@ -31,25 +31,15 @@ public class DataManager {
 	}
 	
 	public void unloadWorld(World w) {
-		this.database.remove(this.getWorldData(w.getName()));
+		this.database.remove(this.getWorldData(w));
 	}
 	
 	public void flushAndUnloadWorld(World w) {
 		
-		WorldData wd = this.getWorldData(w.getName());
+		WorldData wd = this.getWorldData(w);
 		wd.flush();
 		
 		this.database.remove(wd);
-		
-	}
-	
-	public WorldData getWorldData(String worldName) {
-		
-		for (WorldData wd : this.database) {
-			if (wd.getWorld().getName().equals(worldName)) return wd;
-		}
-		
-		return null;
 		
 	}
 	
@@ -59,7 +49,7 @@ public class DataManager {
 			if (wd.getWorld() == world) return wd;
 		}
 		
-		return null;
+		return this.loadWorld(world);
 		
 	}
 	

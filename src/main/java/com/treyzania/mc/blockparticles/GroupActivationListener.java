@@ -37,7 +37,7 @@ public class GroupActivationListener implements Listener {
 		Location loc = p.getLocation();
 		Location lastUpdate = this.lastUpdateLocations.get(p);
 		
-		if (loc.distanceSquared(lastUpdate) > this.minUpdateDistanceSq) {
+		if (lastUpdate == null || loc.distanceSquared(lastUpdate) > this.minUpdateDistanceSq) {
 			
 			this.lastUpdateLocations.put(p, loc);
 			this.updatePositions(p);
@@ -64,6 +64,7 @@ public class GroupActivationListener implements Listener {
 		for (ParticleGroup pg : this.manager.getWorldData(w).getGroups().values()) {
 			
 			Point3i ctr = pg.getCenter();
+			if (ctr == null) continue;
 			boolean inRange = loc.distanceSquared(new Location(w, ctr.x, ctr.y, ctr.z)) < Math.pow(pg.getRange(), 2);
 			
 			// Not too clean, but works well.

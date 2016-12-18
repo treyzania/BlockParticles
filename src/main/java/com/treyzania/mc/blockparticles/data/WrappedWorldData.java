@@ -2,7 +2,6 @@ package com.treyzania.mc.blockparticles.data;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 
@@ -21,6 +20,8 @@ public class WrappedWorldData implements WorldData {
 		
 		this.world = w;
 		this.groups = groups;
+		
+		Bukkit.getLogger().warning("WORLD: " + w.getName() + " GROUPS: " + groups);
 		
 	}
 	
@@ -44,7 +45,7 @@ public class WrappedWorldData implements WorldData {
 	
 	@Override
 	public Map<String, ParticleGroup> getGroups() {
-		return new HashMap<>(this.groups);
+		return this.groups;
 	}
 
 	@Override

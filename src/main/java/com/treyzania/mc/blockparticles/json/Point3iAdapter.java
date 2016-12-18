@@ -21,7 +21,7 @@ public class Point3iAdapter extends TypeAdapter<Point3i> {
 
 	@Override
 	public void write(JsonWriter w, Point3i p) throws IOException {
-		w.jsonValue(String.format("%s,%s,%s", p.x, p.y, p.z));
+		w.value(String.format("%s,%s,%s", p.x, p.y, p.z));
 	}
 
 }

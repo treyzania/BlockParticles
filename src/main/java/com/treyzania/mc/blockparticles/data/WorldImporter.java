@@ -51,9 +51,22 @@ public class WorldImporter {
 			
 			Gson g = IoUtils.makeGson();
 			Type t = new TypeToken<Map<String, ParticleGroup>>(){}.getType();
-			Map<String, ParticleGroup> data = g.fromJson(new FileReader(f), t);
+			Map<String, ParticleGroup> groups = g.fromJson(new FileReader(f), t);
 			
-			return new WrappedWorldData(w, data);
+			WrappedWorldData wwd = new WrappedWorldData(w, groups);
+			
+			if (groups != null) {
+				
+				// Hook up the callbacks.
+				for (ParticleGroup pg : groups.values()) {
+					pg.setFlushCallback(wwd::flush);
+				}
+				
+			} else {
+				wwd = new WrappedWorldData(w, new HashMap<>());
+			}
+			
+			return wwd;
 			
 		} catch (JsonIOException e) {
 			log.log(Level.SEVERE, "Other problem parsing JSON.", e);

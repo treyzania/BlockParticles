@@ -1,7 +1,7 @@
 name: BlockParticles
 author: treyzania
 version: 0.0.1
-main: com.treyzania.mc.blockparticles
+main: com.treyzania.mc.blockparticles.BlockParticles
 commands:
     bpcreate:
         description: Starts creation of a set of block particles.

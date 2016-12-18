@@ -34,9 +34,12 @@ public class BlockParticles extends JavaPlugin {
 		pm.registerEvents(new BlockPlacementListener(this.dataManager), this);
 		
 		// Commands.
-		this.getCommand("bpcreate").setExecutor(new ComandStartSession(this.dataManager));
+		this.getCommand("bpcreate").setExecutor(new ComandStartSession(this.dataManager, this.config));
 		this.getCommand("bpstop").setExecutor(new CommandEndSession(this.dataManager));
 		this.getCommand("bpreload").setExecutor(new CommandReload(this));
+		
+		// Background thingy.
+		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new ParticleSpawnProcedure(this.dataManager, this.getServer()), 0, 1);
 		
 	}
 	
